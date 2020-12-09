@@ -5,15 +5,16 @@ defmodule BankWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", BankWeb do
+  scope "/protected", BankWeb do
     pipe_through :api
 
-    resources "/users", UserController, except: [:new, :edit]
+    resources "/users", UserController, except: [:new, :edit, :create]
     resources "/accounts", AccountController, except: [:new, :edit]
   end
 
   scope "/auth", BankWeb do
     post "/signin", AuthController, :signin
+    post "/signup", AuthController, :signup
   end
 
   # Enables LiveDashboard only for development

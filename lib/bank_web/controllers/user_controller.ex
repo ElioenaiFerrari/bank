@@ -2,14 +2,6 @@ defmodule BankWeb.UserController do
   use BankWeb, :controller
   alias Bank.Users
 
-  def create(conn, %{"user" => params}) do
-    with {:ok, user} <- Users.create_user(params) do
-      conn
-      |> put_status(:created)
-      |> render("show.json", %{user: user})
-    end
-  end
-
   def index(conn, _params) do
     users = Users.list_users()
 

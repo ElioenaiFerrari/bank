@@ -2,6 +2,14 @@ defmodule BankWeb.AuthController do
   use BankWeb, :controller
   alias BankWeb.Auth.Guardian
 
+  def signup(conn, %{"user" => params}) do
+    with {:ok, user} <- Users.create_user(params) do
+      conn
+      |> put_status(:created)
+      |> render("show.json", %{user: user})
+    end
+  end
+
   def signin(conn, %{"user" => user}) do
     case Guardian.authenticate(user) do
       {:ok, token} ->
