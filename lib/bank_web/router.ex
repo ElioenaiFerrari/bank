@@ -5,8 +5,12 @@ defmodule BankWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :auth do
+    plug BankWeb.Auth.Pipeline
+  end
+
   scope "/app", BankWeb do
-    pipe_through :api
+    pipe_through [:api, :auth]
 
     resources "/users", UserController, except: [:new, :edit, :create]
     resources "/accounts", AccountController, except: [:new, :edit]

@@ -34,6 +34,10 @@ config :bank, BankWeb.Auth.Guardian,
 
 config :bcrypt_elixir, log_rounds: 8
 
+config :bank, BankWeb.Auth.Pipeline,
+  module: BankWeb.Auth.Guardian,
+  error_handle: BankWeb.Auth.ErrorHandle
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
