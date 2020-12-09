@@ -55,6 +55,10 @@ defmodule Bank.Users do
     |> Repo.insert()
   end
 
+  def get_by_email!(email) do
+    Repo.get_by!(User, email: email)
+  end
+
   @doc """
   Updates a user.
 

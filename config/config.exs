@@ -27,6 +27,13 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+config :bank, BankWeb.Auth.Guardian,
+  issuer: "bank",
+  verify_issuer: true,
+  secret_key: "DNbC6Nbi2mCrRBxDvUyn3+4U1y9Q1IbqcIUzMobNVMJdlevKURm9NiTDByOaSawU"
+
+config :bcrypt_elixir, log_rounds: 8
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"

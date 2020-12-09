@@ -6,7 +6,7 @@ defmodule BankWeb.UserController do
     with {:ok, user} <- Users.create_user(params) do
       conn
       |> put_status(:created)
-      |> render("show.json", user: user)
+      |> render("show.json", %{user: user})
     end
   end
 
