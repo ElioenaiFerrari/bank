@@ -5,7 +5,7 @@ defmodule BankWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/protected", BankWeb do
+  scope "/app", BankWeb do
     pipe_through :api
 
     resources "/users", UserController, except: [:new, :edit, :create]

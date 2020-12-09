@@ -1,12 +1,13 @@
 defmodule BankWeb.AuthController do
   use BankWeb, :controller
   alias BankWeb.Auth.Guardian
+  alias Bank.Users
 
   def signup(conn, %{"user" => params}) do
     with {:ok, user} <- Users.create_user(params) do
       conn
       |> put_status(:created)
-      |> render("show.json", %{user: user})
+      |> render("signup.json", %{user: user})
     end
   end
 
@@ -15,7 +16,7 @@ defmodule BankWeb.AuthController do
       {:ok, token} ->
         conn
         |> put_status(:ok)
-        |> render("token.json", token: token)
+        |> render("signin.json", token: token)
 
       {:error, status, message} ->
         conn
