@@ -36,7 +36,7 @@ config :bcrypt_elixir, log_rounds: 8
 
 config :bank, BankWeb.Auth.Pipeline,
   module: BankWeb.Auth.Guardian,
-  error_handle: BankWeb.Auth.ErrorHandle
+  error_handler: BankWeb.Auth.ErrorHandler
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
